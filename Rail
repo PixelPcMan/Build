@@ -1,0 +1,114 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/PixelPcMan/Lubra/refs/heads/main/UI"))()
+local Window = Library.Window('Rail')
+--Main
+local Test1 = Window.CreateTab('Main')
+Test1.CreateDivider("Main")
+--inicio
+Test1.CreateButton("KillNpc", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/PixelPcMan/Lubra/refs/heads/main/KillNpc"))()
+end)
+--new
+Test1.CreateButton("Aimbot", function()
+loadstring(game:HttpGet("https://pastebin.com/raw/NNRzb6Zr"))()
+end)
+--newMain
+local Test1 = Window.CreateTab('Tp')
+Test1.CreateDivider("Tps")
+--inicio.
+Test1.CreateButton("Tp tren", function()
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer or Players:GetPlayerFromCharacter(script.Parent)
+
+local vehicleSeat = workspace.Train.TrainControls.ConductorSeat.VehicleSeat
+
+local function teleportToVehicleSeat()
+    if player and player.Character then
+        local character = player.Character
+        -- Mueve al jugador a la posición del VehicleSeat
+        character:SetPrimaryPartCFrame(vehicleSeat.CFrame)
+    end
+end
+
+teleportToVehicleSeat()
+end)
+--new
+Test1.CreateToggle("Tp Tren", function(state)
+    if state then
+        _G.on = true
+        while _G.on do
+            local Players = game:GetService("Players")
+local player = Players.LocalPlayer or Players:GetPlayerFromCharacter(script.Parent)
+
+local vehicleSeat = workspace.Train.TrainControls.ConductorSeat.VehicleSeat
+
+local function teleportToVehicleSeat()
+    if player and player.Character then
+        local character = player.Character
+        -- Mueve al jugador a la posición del VehicleSeat
+        character:SetPrimaryPartCFrame(vehicleSeat.CFrame)
+    end
+end
+
+teleportToVehicleSeat()
+            wait()
+        end
+    else
+        _G.on = false
+    end
+end)
+--new
+local Test1 = Window.CreateTab('Drop')
+Test1.CreateDivider("opción")
+--Main
+Test1.CreateButton("recojerMaterial", function()
+game:GetService("ReplicatedStorage").Remotes.StoreItem:FireServer(workspace.RuntimeItems.Coal)
+game:GetService("ReplicatedStorage").Remotes.StoreItem:FireServer(workspace.RuntimeItems.GoldCup)
+game:GetService("ReplicatedStorage").Remotes.StoreItem:FireServer(workspace.RuntimeItems.GoldPainting)
+game:GetService("ReplicatedStorage").Remotes.StoreItem:FireServer(workspace.RuntimeItems.Crucifix)
+    end)
+--new
+Test1.CreateButton("lingotes", function()
+game:GetService("ReplicatedStorage").Remotes.StoreItem:FireServer(workspace.RuntimeItems.Bond)
+game:GetService("ReplicatedStorage").Remotes.StoreItem:FireServer(workspace.RuntimeItems.GoldBar)
+    end)
+--new
+Test1.CreateButton("Drop", function()
+game:GetService("ReplicatedStorage").Remotes.DropItem:FireServer()
+    end)
+--new
+Test1.CreateToggle("Drop", function(state)
+    -- Si el estado es verdadero, activar la función
+    if state then
+        _G.on = true
+        while _G.on do
+            game:GetService("ReplicatedStorage").Remotes.DropItem:FireServer()
+            wait()
+        end
+    else
+        _G.on = false
+    end
+end)
+--new
+
+--Toggle
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "ScreenGui"
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ResetOnSpawn = false
+local Toggle = Instance.new("TextButton")
+Toggle.Name = "Toggle"
+Toggle.Parent = ScreenGui
+Toggle.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Toggle.Position = UDim2.new(0, 0, 0.454706937, 0)
+Toggle.Size = UDim2.new(0, 50, 0,50)
+Toggle.Font = Enum.Font.SourceSans
+Toggle.Text = "Pixel"
+Toggle.TextColor3 = Color3.fromRGB(248, 248, 248)
+Toggle.TextSize = 28.000
+Toggle.Draggable = true
+Toggle.MouseButton1Click:connect(function()
+    Library:ToggleUI()
+end)
+local Corner = Instance.new("UICorner")
+Corner.Name = "Corner"
+Corner.Parent = Toggle

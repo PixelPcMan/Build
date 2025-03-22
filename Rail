@@ -112,3 +112,36 @@ end)
 local Corner = Instance.new("UICorner")
 Corner.Name = "Corner"
 Corner.Parent = Toggle
+
+--Time
+local player = game.Players.LocalPlayer
+
+local function createTimerUI()
+    local screenGui = Instance.new("ScreenGui", player.PlayerGui)
+
+    local timerLabel = Instance.new("TextLabel", screenGui)
+    timerLabel.Size = UDim2.new(0, 80, 0, 40)
+    timerLabel.Position = UDim2.new(0.5, -40, 0, -5)
+    timerLabel.AnchorPoint = Vector2.new(0.5, 0)
+    timerLabel.Text = "10:00"
+    timerLabel.TextColor3 = Color3.fromRGB(250, 85, 85)
+    timerLabel.Font = Enum.Font.GothamBlack
+    timerLabel.TextSize = 20
+    timerLabel.BackgroundTransparency = 1 
+
+    return timerLabel
+end
+
+local timerLabel = createTimerUI()
+
+local function startTimer(duration)
+    local endTime = tick() + duration
+    while tick() < endTime do
+        local remaining = endTime - tick()
+        timerLabel.Text = string.format("%02d:%02d", math.floor(remaining / 60), math.floor(remaining % 60))
+        wait(0.1)
+    end
+    timerLabel.Text = "00:00"
+end
+
+startTimer(600)

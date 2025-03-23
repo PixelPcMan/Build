@@ -26,23 +26,6 @@ local targetPosition = Vector3.new(-346, -69, -49060)
 character.HumanoidRootPart.CFrame = CFrame.new(targetPosition)
 end)
 --new
-Test1.CreateButton("Tp tren", function()
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer or Players:GetPlayerFromCharacter(script.Parent)
-
-local vehicleSeat = workspace.Train.TrainControls.ConductorSeat.VehicleSeat
-
-local function teleportToVehicleSeat()
-    if player and player.Character then
-        local character = player.Character
-        -- Mueve al jugador a la posición del VehicleSeat
-        character:SetPrimaryPartCFrame(vehicleSeat.CFrame)
-    end
-end
-
-teleportToVehicleSeat()
-end)
---new
 Test1.CreateToggle("Tp Tren", function(state)
     if state then
         _G.on = true
@@ -66,6 +49,23 @@ teleportToVehicleSeat()
     else
         _G.on = false
     end
+end)
+--new
+Test1.CreateButton("Tp tren", function()
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer or Players:GetPlayerFromCharacter(script.Parent)
+
+local vehicleSeat = workspace.Train.TrainControls.ConductorSeat.VehicleSeat
+
+local function teleportToVehicleSeat()
+    if player and player.Character then
+        local character = player.Character
+        -- Mueve al jugador a la posición del VehicleSeat
+        character:SetPrimaryPartCFrame(vehicleSeat.CFrame)
+    end
+end
+
+teleportToVehicleSeat()
 end)
 --new
 local Test1 = Window.CreateTab('Drop')

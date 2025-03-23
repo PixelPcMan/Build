@@ -12,6 +12,10 @@ Test1.CreateButton("Aimbot", function()
 loadstring(game:HttpGet("https://pastebin.com/raw/NNRzb6Zr"))()
 end)
 --new
+--newMain
+local Test1 = Window.CreateTab('Tp')
+Test1.CreateDivider("Tp")
+--inicio
 Test1.CreateButton("TpFinal", function()
 wait(1)
 local player = game.Players.LocalPlayer
@@ -21,10 +25,7 @@ local targetPosition = Vector3.new(-346, -69, -49060)
 
 character.HumanoidRootPart.CFrame = CFrame.new(targetPosition)
 end)
---newMain
-local Test1 = Window.CreateTab('Tp')
-Test1.CreateDivider("Tps")
---inicio.
+--new
 Test1.CreateButton("Tp tren", function()
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer or Players:GetPlayerFromCharacter(script.Parent)

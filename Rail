@@ -11,6 +11,11 @@ end)
 Test1.CreateButton("Aimbot", function()
 loadstring(game:HttpGet("https://pastebin.com/raw/NNRzb6Zr"))()
 end)
+--new
+Test1.CreateButton("TpFinal", function()
+wait(1)
+player.Character:PivotTo(CFrame.new(-346, -69, -49060))
+end)
 --newMain
 local Test1 = Window.CreateTab('Tp')
 Test1.CreateDivider("Tps")

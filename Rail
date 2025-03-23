@@ -1,22 +1,21 @@
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/PixelPcMan/Lubra/refs/heads/main/UI"))()
-local Window = Library.Window('Rail')
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ZeianRussell/Kavo-UI-Library/main/Movable.source.lua"))()
+local Window = Library.CreateLib("Dead Rail", "DarkTheme")
 --Main
-local Test1 = Window.CreateTab('Main')
-Test1.CreateDivider("Main")
+local Main = Window:NewTab("Main")
+local MainSection = Main:NewSection("Maim")
 --inicio
-Test1.CreateButton("KillNpc", function()
+MainSection:NewButton("KillNpc", "Cam", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/PixelPcMan/Lubra/refs/heads/main/KillNpc"))()
 end)
 --new
-Test1.CreateButton("Aimbot", function()
+MainSection:NewButton("Aimbot", "Head", function()
 loadstring(game:HttpGet("https://pastebin.com/raw/NNRzb6Zr"))()
 end)
 --new
---newMain
-local Test1 = Window.CreateTab('Tp')
-Test1.CreateDivider("Tp")
+local Main = Window:NewTab("Tp")
+local MainSection = Main:NewSection("Main")
 --inicio
-Test1.CreateButton("TpFinal", function()
+MainSection:NewButton("TpEnd", "Tp", function()
 wait(1)
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
@@ -26,7 +25,7 @@ local targetPosition = Vector3.new(-346, -69, -49060)
 character.HumanoidRootPart.CFrame = CFrame.new(targetPosition)
 end)
 --new
-Test1.CreateToggle("Tp Tren", function(state)
+MainSection:NewToggle("TpTren", "Tren", function()
     if state then
         _G.on = true
         while _G.on do
@@ -51,7 +50,7 @@ teleportToVehicleSeat()
     end
 end)
 --new
-Test1.CreateButton("Tp tren", function()
+MainSection:NewButton("TpTren", "Tp", function()
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer or Players:GetPlayerFromCharacter(script.Parent)
 
@@ -68,27 +67,10 @@ end
 teleportToVehicleSeat()
 end)
 --new
-local Test1 = Window.CreateTab('Drop')
-Test1.CreateDivider("opción")
---Main
-Test1.CreateButton("recojerMaterial", function()
-game:GetService("ReplicatedStorage").Remotes.StoreItem:FireServer(workspace.RuntimeItems.Coal)
-game:GetService("ReplicatedStorage").Remotes.StoreItem:FireServer(workspace.RuntimeItems.GoldCup)
-game:GetService("ReplicatedStorage").Remotes.StoreItem:FireServer(workspace.RuntimeItems.GoldPainting)
-game:GetService("ReplicatedStorage").Remotes.StoreItem:FireServer(workspace.RuntimeItems.Crucifix)
-    end)
---new
-Test1.CreateButton("lingotes", function()
-game:GetService("ReplicatedStorage").Remotes.StoreItem:FireServer(workspace.RuntimeItems.Bond)
-game:GetService("ReplicatedStorage").Remotes.StoreItem:FireServer(workspace.RuntimeItems.GoldBar)
-    end)
---new
-Test1.CreateButton("Drop", function()
-game:GetService("ReplicatedStorage").Remotes.DropItem:FireServer()
-    end)
---new
-Test1.CreateToggle("Drop", function(state)
-    -- Si el estado es verdadero, activar la función
+local Main = Window:NewTab("Drop")
+local MainSection = Main:NewSection("Maim")
+--inicio
+MainSection:NewToggle("Drop", "Auto", function()
     if state then
         _G.on = true
         while _G.on do
@@ -100,7 +82,16 @@ Test1.CreateToggle("Drop", function(state)
     end
 end)
 --new
-
+MainSection:NewButton("Drop", " ", function()
+game:GetService("ReplicatedStorage").Remotes.DropItem:FireServer()
+end)
+--nee
+MainSection:NewButton("Recojer", "Elimodo", function()
+game:GetService("ReplicatedStorage").Remotes.StoreItem:FireServer(workspace.RuntimeItems.Coal)
+game:GetService("ReplicatedStorage").Remotes.StoreItem:FireServer(workspace.RuntimeItems.GoldCup)
+game:GetService("ReplicatedStorage").Remotes.StoreItem:FireServer(workspace.RuntimeItems.GoldPainting)
+game:GetService("ReplicatedStorage").Remotes.StoreItem:FireServer(workspace.RuntimeItems.Crucifix)
+end)
 --Toggle
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "ScreenGui"
@@ -113,7 +104,7 @@ Toggle.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 Toggle.Position = UDim2.new(0, 0, 0.454706937, 0)
 Toggle.Size = UDim2.new(0, 50, 0,50)
 Toggle.Font = Enum.Font.SourceSans
-Toggle.Text = "87GodJux"
+Toggle.Text = "👾"
 Toggle.TextColor3 = Color3.fromRGB(248, 248, 248)
 Toggle.TextSize = 28.000
 Toggle.Draggable = true
@@ -123,36 +114,3 @@ end)
 local Corner = Instance.new("UICorner")
 Corner.Name = "Corner"
 Corner.Parent = Toggle
-
---Time
-local player = game.Players.LocalPlayer
-
-local function createTimerUI()
-    local screenGui = Instance.new("ScreenGui", player.PlayerGui)
-
-    local timerLabel = Instance.new("TextLabel", screenGui)
-    timerLabel.Size = UDim2.new(0, 80, 0, 40)
-    timerLabel.Position = UDim2.new(0.5, -40, 0, -5)
-    timerLabel.AnchorPoint = Vector2.new(0.5, 0)
-    timerLabel.Text = "10:00"
-    timerLabel.TextColor3 = Color3.fromRGB(250, 85, 85)
-    timerLabel.Font = Enum.Font.GothamBlack
-    timerLabel.TextSize = 20
-    timerLabel.BackgroundTransparency = 1 
-
-    return timerLabel
-end
-
-local timerLabel = createTimerUI()
-
-local function startTimer(duration)
-    local endTime = tick() + duration
-    while tick() < endTime do
-        local remaining = endTime - tick()
-        timerLabel.Text = string.format("%02d:%02d", math.floor(remaining / 60), math.floor(remaining % 60))
-        wait(0.1)
-    end
-    timerLabel.Text = "00:00"
-end
-
-startTimer(600)
